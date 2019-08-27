@@ -12,7 +12,7 @@ public class Dao {
         this.file = file;
     }
 
-    public List<String[]> selectQuery() {
+    public List<String[]> selectAll() {
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
