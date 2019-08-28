@@ -28,7 +28,13 @@ public class SQLController {
                     .map(String::trim)
                     .collect(Collectors.toList());
 
-            if (trimmedColums.contains("*") && trimmedColums.size() == 1) {
+            if (userInput.contains("WHERE")) {
+                if (trimmedColums.contains("*") && trimmedColums.size() == 1) {
+                    String[] tempArr = userInput.split("WHERE");
+                    String condition = tempArr[1];
+                    view.dispayAll(dao.selectWithCondition(condition));
+                }
+            } else if (trimmedColums.contains("*") && trimmedColums.size() == 1) {
                 view.dispayAll(dao.selectAll());
             } else if (trimmedColums.size() >= 1) {
                 if (checkIfAllColumnsExistInFile(trimmedColums)) {

@@ -53,4 +53,6 @@ public class View {
 
     SELECT ID, first_name,last_name,  age FROM employees
 
+    SELECT * FROM employees WHERE age > 20
+
  */
