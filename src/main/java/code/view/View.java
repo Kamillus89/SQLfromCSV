@@ -34,7 +34,7 @@ public class View {
         for (int i = 0; i < heading.length; i++) {
             for (int j = 0; j < trimmedColums.size(); j++) {
                 if (heading[i].equals(trimmedColums.get(j))) {
-                    indexes.add(i);
+                    indexes.add(j);
                 }
             }
         }
