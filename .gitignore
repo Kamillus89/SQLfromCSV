@@ -130,3 +130,13 @@ gradle-app.setting
 **/build/
 
 # End of https://www.gitignore.io/api/gradle
+
+build.gradle
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+settings.gradle
+src/main/resources/Client configuration
+src/main/resources/credentials.json
+tokens/StoredCredential

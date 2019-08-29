@@ -3,8 +3,9 @@ package code.Controller;
 import code.dao.Dao;
 import code.view.View;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,16 +50,15 @@ public class SQLController {
 
     private boolean checkIfAllColumnsExistInFile(List<String> trimmedColums) {
         String[] TempColumnHeadingsInCSV = dao.selectAll().get(0);
-        List<String> columnHeadingsInCSV = new ArrayList<>();
-        for (String column : TempColumnHeadingsInCSV) {
-            columnHeadingsInCSV.add(column);
-        }
+        List<String> columnHeadingsInCSV = Arrays.asList(TempColumnHeadingsInCSV);
 
-        for (String columnHeading : trimmedColums) {
-            if (!columnHeadingsInCSV.contains(columnHeading)) {
-                view.displayMessage("Wrong input. One or more columns doesn't exist");
-                return false;
-            }
+        Optional<String> posibleError = trimmedColums.stream()
+                .filter(columnHeading -> !columnHeadingsInCSV.contains(columnHeading))
+                .findAny();
+
+        if (posibleError.isPresent()) {
+            view.displayMessage("Wrong input. One or more columns doesn't exist");
+            return false;
         }
         return true;
     }

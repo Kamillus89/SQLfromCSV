@@ -27,13 +27,20 @@ public class View {
         System.out.println(msg);
     }
 
-    public void displayColumns(List<String[]> employees, List<String> trimmedColums) {
-        String[] heading = employees.get(0);
+    public void displayColumns(List<String[]> employees, List<String> trimmedColumnsNames) {
+        String[] headings = employees.get(0);
+
+//        String displayColumnValue = trimmedColumnsNames.stream()
+//                .filter(columnName -> Arrays.asList(headings).contains(columnName))
+//                .collect(Collectors.joining(" "));
+//
+//        System.out.println(displayColumnValue);
+
         List<Integer> indexes = new ArrayList<>();
 
-        for (int i = 0; i < heading.length; i++) {
-            for (int j = 0; j < trimmedColums.size(); j++) {
-                if (heading[i].equals(trimmedColums.get(j))) {
+        for (int i = 0; i < headings.length; i++) {
+            for (int j = 0; j < trimmedColumnsNames.size(); j++) {
+                if (headings[i].equals(trimmedColumnsNames.get(j))) {
                     indexes.add(j);
                 }
             }
