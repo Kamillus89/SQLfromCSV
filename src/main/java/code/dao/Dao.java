@@ -78,11 +78,17 @@ public class Dao {
 
         String columnName = conditionArray[0];
         String conditionSign = chooseConditionSign(condition);
-        String conditionValue = conditionArray[1].trim();
+        String conditionValue = (conditionArray.length <= 2) ? conditionArray[1].trim() : conditionArray[2].trim();
 
         switch (conditionSign) {
             case ">":
                 return Integer.valueOf(employee[3]) > Integer.valueOf(conditionValue);
+            case "<":
+                return Integer.valueOf(employee[3]) < Integer.valueOf(conditionValue);
+            case "=":
+                return Integer.valueOf(employee[3]) == Integer.valueOf(conditionValue);
+            case "<>":
+                return Integer.valueOf(employee[3]) != Integer.valueOf(conditionValue);
             default:
                 return false;
         }
