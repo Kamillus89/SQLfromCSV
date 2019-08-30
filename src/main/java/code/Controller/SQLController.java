@@ -3,6 +3,7 @@ package code.Controller;
 import code.dao.Dao;
 import code.view.View;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,11 @@ public class SQLController {
                 if (trimmedColums.contains("*") && trimmedColums.size() == 1) {
                     String[] tempArr = userInput.split("WHERE");
                     String condition = tempArr[1];
-                    view.dispayAll(dao.selectWithCondition(condition));
+                    try {
+                        view.dispayAll(dao.selectWithCondition(condition));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             } else if (trimmedColums.contains("*") && trimmedColums.size() == 1) {
                 view.dispayAll(dao.selectAll());
